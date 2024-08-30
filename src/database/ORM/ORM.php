@@ -8,6 +8,7 @@ use PDO;
 class ORM
 {
     private PDO $conn;
+
     function __construct()
     {
         $connect = new Connector();
@@ -15,9 +16,9 @@ class ORM
         $this->conn = $connect->getConn();
     }
 
-    static function query(string $query)
+    function query(string $query)
     {
-        $result = self::$conn->query($query);
+        $result = $this->conn->query($query);
 
         while($row = $result->fetch())
         {
@@ -25,8 +26,13 @@ class ORM
         }
     }
 
-    static function build()
+    function getConn()
     {
-        return new Builder();
+        return $this->conn;
+    }
+
+    static function build(string $table)
+    {
+        return new Builder($table);
     }
 }
