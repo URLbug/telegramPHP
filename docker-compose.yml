@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  postgresql:
+    image: postgres
+    ports:
+      - 5532:5432
+    restart: unless-stopped
+    tty: true
+    env_file: .env
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data 
+    networks:
+      - telegram
+
+  php:
+    build:
+      context: .
+      dockerfile: PHP.Dockerfile
+    volumes:
+      - ./src:/var/www
+    ports:
+      - 9000:9000
+    networks:
+      - telegram
+  
+networks:
+  telegram:
+    driver: bridge
+
+volumes:
+  postgresql-data:
+    driver: local
