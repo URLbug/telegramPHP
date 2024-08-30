@@ -1,5 +1,9 @@
 {
     "require": {
         "telegram-bot/api": "^2.5"
+    },
+
+    "autoload": {
+        "classmap": ["app/", "config/", "database/"]
     }
 }
