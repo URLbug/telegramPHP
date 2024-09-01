@@ -2,7 +2,7 @@
 
 namespace config;
 
-final class Env implements EnvInterface
+class Env implements EnvInterface
 {
     private $env;
 
@@ -11,12 +11,12 @@ final class Env implements EnvInterface
         $this->env = parse_ini_file('.env');
     }
 
-    function get(string $name): mixed
+    function get(string $name)
     {
         return $this->env[$name];
     }
 
-    function set(string $name, mixed $data): EnvInterface
+    function set(string $name, $data): EnvInterface
     {
         $this->env[$name] = $data;
 

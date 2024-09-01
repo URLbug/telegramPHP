@@ -5,7 +5,7 @@ namespace database\ORM;
 use database\Connector;
 use PDO;
 
-class ORM
+class ORM implements ORMInterface
 {
     private PDO $conn;
 
@@ -26,12 +26,12 @@ class ORM
         }
     }
 
-    function getConn()
+    function getConn(): PDO
     {
         return $this->conn;
     }
 
-    static function build(string $table)
+    static function build(string $table): BuilderInterface
     {
         return new Builder($table);
     }

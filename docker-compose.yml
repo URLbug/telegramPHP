@@ -4,7 +4,7 @@ services:
   postgresql:
     image: postgres
     ports:
-      - 5532:5432
+      - 5552:5432
     restart: unless-stopped
     tty: true
     env_file: .env
@@ -20,7 +20,7 @@ services:
     volumes:
       - ./src:/var/www
     ports:
-      - 9000:9000
+      - 9110:9000
     networks:
       - telegram
   

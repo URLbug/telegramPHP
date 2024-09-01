@@ -3,7 +3,7 @@
 namespace database\ORM;
 
 
-class Builder
+class Builder implements BuilderInterface
 {
     private string $table;
     private ORM $orm;
@@ -16,7 +16,7 @@ class Builder
         $this->orm = new ORM();
     }
 
-    function select(array $row): Builder
+    function select(array $row): BuilderInterface
     {
         $newrow = $this->arrayToString($row);
 
@@ -25,7 +25,7 @@ class Builder
         return $this;
     }
 
-    function where(string $row, string $args, mixed $data): Builder
+    function where(string $row, string $args, $data): BuilderInterface
     {
         $data = htmlspecialchars($data);
 
@@ -51,7 +51,7 @@ class Builder
         return $this->orm->getConn()->exec($query);
     }
 
-    function update(array $row, array $data): Builder
+    function update(array $row, array $data): BuilderInterface
     {
         $newrow = [];
 
